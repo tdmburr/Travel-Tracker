@@ -30,3 +30,5 @@ const tripsData = [
     "suggestedActivities":[]
   }
 ]
+
+export default tripsData;
