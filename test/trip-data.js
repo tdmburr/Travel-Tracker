@@ -28,7 +28,7 @@ const tripsData = [
     "duration":17,
     "status":"approved",
     "suggestedActivities":[]
-  }
+  },
 ]
 
 export default tripsData;

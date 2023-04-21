@@ -4,6 +4,8 @@ class Trip {
   }
 }
 
+//  need traveler id method
 
+//  method that uses duration of trip
 
 export default Trip;

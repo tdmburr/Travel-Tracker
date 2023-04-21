@@ -17,14 +17,33 @@ describe('Traveler', function() {
     })
   
     it('should take in a user ID', function() {
-      expect(traveler.travelerData[0].id).to.equal(1);
+      expect(traveler.travelerData[0].id).to.equal(44);
     });
   
     it('should take in a travelers name', function() {
-      expect(traveler.travelerData[0].name).to.equal("Ham Leadbeater");
+      expect(traveler.travelerData[0].name).to.equal("Marijo MacNeilley");
     })
     
     it('should take in a travel style', function () {
-      expect(traveler.travelerData[0].travelerType).to.equal("relaxer")
+      expect(traveler.travelerData[0].travelerType).to.equal("photographer")
     })
+
+    it('should take in a current traveler', function () {
+      expect(traveler.currentTraveler).to.equal(undefined)
+    })
+
+    it('should have a method to return a current traveler', function () {
+      
+      expect(traveler.getTraveler(44)).to.deep.equal({
+        "id":44,
+        "name":"Marijo MacNeilley",
+        "travelerType":"photographer" 
+      })
+    })
+
+    it('should return undefined if a user ID doesnt exist', function () {
+      expect(traveler.getTraveler(54)).to.equal(undefined)
+    })
+
+    
 })    
