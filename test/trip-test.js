@@ -62,8 +62,4 @@ describe('Trip', function() {
         }
       ])
     })
-
-    it('should be able to calculate a trip\'s cost based off a destination id', function () {
-      expect().to.deep.equal()
-    })
 })  
