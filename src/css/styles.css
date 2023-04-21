@@ -1,3 +1,105 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  margin: 0;
+  /* border: 2px solid red; */
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  background-color:#201f1f;
+  font-size: 25px;
+  color: greenyellow
+}
+
+.page-title {
+  margin-left: 15px;
+}
+
+.cash {
+  display: flex;
+  justify-content: flex-end;
+  color: greenyellow;
+  margin-right: 15px;
+}
+
+.select-container, .button {
+  border: none;
+  background: none;
+  color: green
+}
+
+.button {
+  font-size: 25px;
+}
+
+.button:hover {
+  color: red
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.lower-bar {
+  padding-top: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: green;
+  font-family: "papyrus";
+  font-size: 18px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+  width: 100vw;
+}
+
+.grid-container {
+  background: rgb(22,19,20);
+  background: radial-gradient(circle, rgb(19, 19, 22) 0%, rgba(42,102,45,1) 100%);
+  padding: 25px 100px 150px 100px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  height: 80vh;
+}
+
+article {
+  background-color: #201f1f;
+  margin: 0;
+  height: 410px;
+  width: 280px;
+  border: 1px solid black;
+  color: green;
+  font-family: "papyrus";
+}
+
+.card-top {
+  height: 200px;
+}
+
+.card-middle {
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+.card-bottom, .playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 }
