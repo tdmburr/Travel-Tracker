@@ -48,6 +48,21 @@ describe('Trip', function() {
       expect(trip.tripData[0].suggestedActivities).to.deep.equal([])
     })
 
+    it('should find a user trip by an id value', function () {
+      expect(trip.acquirePastTrip("userID", 44)).to.deep.equal([
+        {
+          id: 1,
+          userID: 44,
+          destinationID: 49,
+          travelers: 1,
+          date: '2022/09/16',
+          duration: 8,
+          status: 'approved',
+          suggestedActivities: []
+        }
+      ])
+    })
+
     it('should be able to calculate a trip\'s cost based off a destination id', function () {
       expect().to.deep.equal()
     })

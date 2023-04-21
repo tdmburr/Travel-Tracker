@@ -2,10 +2,10 @@ class Trip {
   constructor(tripData) {
     this.tripData = tripData;
   }
+
+  acquirePastTrip(userID, id) {
+    return this.tripData.filter(trip => trip[userID] === id)
+  }
 }
-
-//  need traveler id method
-
-//  method that uses duration of trip
 
 export default Trip;

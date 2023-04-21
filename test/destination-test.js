@@ -39,4 +39,9 @@ describe('Destination', function() {
     it('should take in an alt text for image', function () {
       expect(destination.destinationData[0].alt).to.equal("aerial photography of rocky mountain under cloudy sky")
     })
+
+    it('should calculate a total trip cost based off of the destinations info', function () {
+
+      expect(destination.calculateCost(49, 1, 8)).to.equal(5819)
+    })
 })   
