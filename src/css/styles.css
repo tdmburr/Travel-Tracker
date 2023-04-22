@@ -78,10 +78,16 @@ article {
   background-color: #201f1f;
   margin: 0;
   height: 410px;
-  width: 280px;
+  width: 300px;
   border: 1px solid black;
   color: green;
   font-family: "papyrus";
+  overflow: scroll;
+}
+
+.dest-img {
+  height: 200px;
+  width: 300px;
 }
 
 .card-top {

@@ -49,7 +49,7 @@ describe('Trip', function() {
     })
 
     it('should find a user trip by an id value', function () {
-      expect(trip.acquirePastTrip("userID", 44)).to.deep.equal([
+      expect(trip.acquirePastTrip(44)).to.deep.equal([
         {
           id: 1,
           userID: 44,
