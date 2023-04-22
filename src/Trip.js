@@ -3,8 +3,8 @@ class Trip {
     this.tripData = tripData;
   }
 
-  acquirePastTrip(userID, id) {
-    return this.tripData.filter(trip => trip[userID] === id)
+  acquirePastTrip(userID) {
+    return this.tripData.filter(trip => trip.userID === userID)
   }
 }
 
