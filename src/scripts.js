@@ -16,6 +16,8 @@ let cashTotal = document.querySelector('.cash')
 // Globals
 let travelers, trips, destinations
 let userID = 2
+let date = new Date();
+let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
 
 // Event Listeners
 
@@ -95,6 +97,33 @@ function renderTotal() {
   cashTotal.innerText = `Total Amount Spent: $${total}`
 }
 
+form.addEventListener('submit', () => {
+  fetch('http://localhost:3001/api/v1/trips', {
+    method: 'POST',
+    body: JSON.stringify({
+      "id":1,
+      "userID":44,
+      "destinationID":49,
+      "travelers":1,
+      "date":"2022/09/16",
+      "duration":8,
+      "status":"approved",
+      "suggestedActivities":[]
+    }), 
+    headers: {
+      'Content-Type': 'application/json'
+    }  
+    .then(data => data.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(`Error at: ${err}`))
+  })
+})
 
+function show(element) {
+  element.classList.remove('hidden');
+}
 
+function hide(element) {
+  element.classList.add('hidden');
+}
 

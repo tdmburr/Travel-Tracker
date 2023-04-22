@@ -14,12 +14,20 @@
       <div class="cash">Total Amount Spent: (TOTAL)</div>
     </section>
     <nav class="lower-bar">
-      <section class="buttons">
-        <button class="button">Past Trips</button>
-        <button class="button">Upcoming Trips</button>
-        <button class="button">Pending Trips</button>
-      </section>
-      <button class="button">Book Trip</button>      
+      <section class="post-form">
+        <form>
+          <label for="date">Date:</label>
+          <input type="date" id="date">
+          <label for="duration">Duration:</label>
+          <input type="number" id="duration" min="1" max="30">
+          <label for="travelers">Number of Travelers:</label>
+          <input type="number" id="traveler" min="1" max="10">
+          <label for="destination">Destination:</label>
+          <select id="destination">
+          <button class="button">Book Trip</button> 
+          </select>
+        </form> 
+      </section>    
     </nav>
   </header>
   <main class="main-body">
