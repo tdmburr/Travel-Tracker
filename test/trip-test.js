@@ -62,4 +62,20 @@ describe('Trip', function() {
         }
       ])
     })
+
+    it('should find a pending trip by its status', function () {
+
+      expect(trip.acquirePendingTrip(3)).to.deep.equal([
+        {
+          "id":3,
+          "userID":3,
+          "destinationID":22,
+          "travelers":4,
+          "date":"2022/05/22",
+          "duration":17,
+          "status":"pending",
+          "suggestedActivities":[]
+        }
+      ])
+    })
 })  
