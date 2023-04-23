@@ -16,9 +16,9 @@
     <nav class="lower-bar">
       <section>
         <form class="post-form">
-          <label for="date">Date:</label>
+          <label for="date">Date:</label><br>
           <div id="date"></div>
-          <label for="duration">Duration:</label>
+          <label for="duration">Duration:</label><br>
           <input class="input" type="number" id="duration" min="1" max="30" required>
           <label for="travelers">Number of Travelers:</label>
           <input class="input" type="number" id="travelers" min="1" max="10" required>
@@ -26,6 +26,8 @@
           <select id="destination" class="input">
             <option></option>
           </select>
+          <button class="estimate">Estimate Cost</button>
+          <p class="estimate-cost">Estimated Trip Cost: </p>
           <button class="button">Book Trip</button> 
         </form> 
       </section>    
@@ -35,15 +37,6 @@
     <section class="grid-container">
       <article class="travel-card-past">
         <h1 class="past">Past Trips</h1>
-        <!-- <header class="card-top">
-          <img class="dest-img" src="" alt="">
-        </header>
-        <main class="card-middle">
-          <p>Destination Info?</p>
-        </main>
-        <footer class="card-bottom">
-          <p>Destination Cost? Date?</p>
-        </footer> -->
       </article>
       <article class="travel-card-pending">
         <h1 class="pending">Pending Trips</h1>

@@ -15,6 +15,8 @@ let dateForm = document.querySelector('#date')
 let durationForm = document.querySelector('#duration')
 let travelerForm = document.querySelector('#travelers')
 let form = document.querySelector('.post-form')
+let estimateButton = document.querySelector('.estimate')
+let costEstimate = document.querySelector('.estimate-cost')
 
 
 // Globals
@@ -38,6 +40,8 @@ window.addEventListener('load', function () {
     travelers.getTraveler(userID)
   });
 });
+
+estimateButton.addEventListener('click', estimateThisTrip)
 
 // Methods
 
@@ -96,6 +100,8 @@ function renderPendingTrips() {
   }) 
 }
 
+// add duration and travelers to innerHTML???
+
 function renderTotal() {
   const dollarConversion = Intl.NumberFormat('en-us')
   const displayPast = trips.acquirePastTrip(userID)
@@ -105,6 +111,18 @@ function renderTotal() {
   }, 0)
   total = dollarConversion.format(total)
   cashTotal.innerText = `Total Amount Spent: $${total}`
+}
+
+function estimateThisTrip(event) {
+  event.preventDefault()
+  const dollarConversion = Intl.NumberFormat('en-us')
+  if (!dateForm.value && durationForm.value && travelerForm.value && destinations.id) {
+    window.alert("Please fill out all of the forms before estimating a cost.")
+  } else {
+    let thisTotal = destinations.calculateCost(parseInt(destinationForm.value), parseInt(travelerForm.value), parseInt(durationForm.value))
+    thisTotal = dollarConversion.format(thisTotal)
+    costEstimate.innerText = `Estimated cost for this trip: $${thisTotal}`  
+  }
 }
 
 function displayDestinationsSelection(destinations) {
@@ -135,7 +153,7 @@ form.addEventListener('submit', (event) => {
   .then(data => console.log(data))
   .catch(err => console.log(`Error at: ${err}`))
 
-  renderPendingTrips()
+  location.reload()
 })
 
 function show(element) {
