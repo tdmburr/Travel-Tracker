@@ -9,4 +9,6 @@ const travelDataFetch = (data) => {
     .catch(err => console.log(`Error at: ${err}`))
 };
 
+
+
 export { travelDataFetch };

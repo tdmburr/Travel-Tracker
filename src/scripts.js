@@ -6,6 +6,7 @@ import Destination from './Destination';
 import Trip from './Trip.js'
 
 // Selectors
+let topBar = document.querySelector('.top-bar')
 let traveler = document.querySelector('.greeting')
 let pastTrips = document.querySelector('.travel-card-past')
 let pendingTrips = document.querySelector('.travel-card-pending')
@@ -17,33 +18,37 @@ let travelerForm = document.querySelector('#travelers')
 let form = document.querySelector('.post-form')
 let estimateButton = document.querySelector('.estimate')
 let costEstimate = document.querySelector('.estimate-cost')
-
+let loginForm = document.querySelector('#userLogin')
+let login = document.querySelector('#loginButton')
+let username = document.querySelector('#username')
+let password = document.querySelector('#password')
 
 // Globals
 let travelers, trips, destinations
-let userID = 2
+let userID = 1
 let date = new Date();
 let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
 
 // Event Listeners
 
-window.addEventListener('load', function () {
+window.addEventListener('load', initializeData);
+
+estimateButton.addEventListener('click', estimateThisTrip)
+
+login.addEventListener('click', acceptUser)
+
+// Methods
+
+function initializeData() {
   Promise.all([travelDataFetch('travelers'), travelDataFetch('trips'), travelDataFetch('destinations')])
   .then(data => {
     travelers = new Traveler(data[0].travelers);
     trips = new Trip(data[1].trips);
     destinations = new Destination(data[2].destinations);
     console.log(travelers, trips, destinations)
-    renderDOM();
+    renderDOM()
   })
-  .then(() => {
-    travelers.getTraveler(userID)
-  });
-});
-
-estimateButton.addEventListener('click', estimateThisTrip)
-
-// Methods
+}
 
 function renderDOM() {
   displayTraveler()
@@ -52,6 +57,21 @@ function renderDOM() {
   renderPendingTrips()
   displayCalendar()
   displayDestinationsSelection(destinations)
+}
+
+function acceptUser(event) {
+  event.preventDefault()
+  const user = username.value
+  const pass = password.value
+  let userLog = parseInt(user.replace("traveler", ""))
+  if (pass === 'travel') {
+    userID = userLog
+    renderDOM()
+    hide(loginForm)
+    show(topBar)
+    show(pastTrips)
+    show(pendingTrips)
+  }
 }
 
 function displayCalendar() {
@@ -64,6 +84,7 @@ function displayTraveler() {
 
 function renderPastTrips() {
   const displayPast = trips.acquirePastTrip(userID)
+  pastTrips.innerHTML = '<h1 class="past">Past Trips</h1>'
   displayPast.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pastTrips.innerHTML +=   
@@ -83,6 +104,7 @@ function renderPastTrips() {
 
 function renderPendingTrips() {
   const displayPending = trips.acquirePendingTrip(userID)
+  pendingTrips.innerHTML = '<h1 class="pending">Pending Trips</h1>'
   displayPending.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pendingTrips.innerHTML +=   
@@ -116,8 +138,8 @@ function renderTotal() {
 function estimateThisTrip(event) {
   event.preventDefault()
   const dollarConversion = Intl.NumberFormat('en-us')
-  if (!dateForm.value && durationForm.value && travelerForm.value && destinations.id) {
-    window.alert("Please fill out all of the forms before estimating a cost.")
+  if (!dateForm.value && parseInt(durationForm.value) && parseInt(travelerForm.value) && parseInt(destinations.id)) {
+    alert("Please fill out all of the forms before estimating a cost.")
   } else {
     let thisTotal = destinations.calculateCost(parseInt(destinationForm.value), parseInt(travelerForm.value), parseInt(durationForm.value))
     thisTotal = dollarConversion.format(thisTotal)
@@ -149,11 +171,13 @@ form.addEventListener('submit', (event) => {
       'Content-Type': 'application/json'
     }  
   })
-  .then(data => data.json())
-  .then(data => console.log(data))
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    initializeData()
+  })
   .catch(err => console.log(`Error at: ${err}`))
 
-  location.reload()
 })
 
 function show(element) {
