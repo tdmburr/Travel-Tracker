@@ -1,15 +1,37 @@
 * {
   margin: 0;
-  /* border: 2px solid red; */
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-body {
+  display: flex;
+  flex-grow: 1;
+  background: rgb(22,19,20);
+  background: radial-gradient(circle, rgb(19, 19, 22) 0%, rgba(42,102,45,1) 100%);
+  max-height: calc(100% - 90px);
 }
 
 .top-bar {
   display: flex;
   flex-direction: column;
   background-color:#201f1f;
-  height: 20%;
   font-size: 25px;
-  color: greenyellow
+  color: greenyellow;
+  height: 90px;
+}
+
+.loginHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px; 
+  margin: 0
 }
 
 .page-title {
@@ -41,7 +63,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 20%;
   width: 100%;
   overflow: hidden;
 }
@@ -63,16 +84,12 @@
 }
 
 .grid-container {
-  background: rgb(22,19,20);
-  background: radial-gradient(circle, rgb(19, 19, 22) 0%, rgba(42,102,45,1) 100%);
-  padding-top: 50px;
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  height: 100vh;
+  width: 100%;
 }
 
 article {
@@ -80,8 +97,8 @@ article {
   flex-direction: column;
   align-items: center;
   background-color: #201f1f;
-  margin: 0;
-  height: 800px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   width: 500px;
   border: 1px solid black;
   color: greenyellow;
@@ -134,4 +151,8 @@ article {
 option {
   font-size: 8px;
   height: 80px;
+}
+
+.hidden {
+  display: none;
 }
