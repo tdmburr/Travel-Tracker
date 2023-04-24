@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden
 }
 
 .main-body {
@@ -34,6 +35,15 @@ body {
   justify-content: center;
   font-size: 50px; 
   margin: 0
+}
+
+.user-form {
+  display: grid;
+
+  padding-top: 50px;
+  font-size: 25px;
+  color: yellowgreen;
+  height: 50px
 }
 
 .page-title {
@@ -100,7 +110,8 @@ article {
   background-color: #201f1f;
   margin-top: 25px;
   margin-bottom: 25px;
-  width: 500px;
+  max-height: 500px;
+  width: 600px;
   border: 1px solid black;
   color: greenyellow;
   font-family: "papyrus";
@@ -152,6 +163,15 @@ article {
 option {
   font-size: 8px;
   height: 80px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid yellowgreen;
+  padding-bottom: 5px;
+  margin: 0;
 }
 
 .hidden {

@@ -29,6 +29,10 @@ let travelers, trips, destinations
 let userID = 1
 let date = new Date();
 let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
+let dollarConversion = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+})
 
 // Event Listeners
 
@@ -49,6 +53,7 @@ function initializeData() {
     console.log(travelers, trips, destinations)
     renderDOM()
   })
+  .catch(err => console.log(`Error at: ${err}`))
 }
 
 function renderDOM() {
@@ -90,16 +95,18 @@ function renderPastTrips() {
   displayPast.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pastTrips.innerHTML +=   
-    `
-      <header class="card-top">
-        <img class="dest-img" src="${destinationDisplay.image}" alt="${destinationDisplay.alt}" width="260px" height="200px">
-      </header>
-      <main class="card-middle">
-        <p>${destinationDisplay.destination}</p>
-      </main>
-      <footer class="card-bottom">
-        <p>Date Traveled: ${trip.date}</p>
-      </footer>
+    ` <section class="user-card"
+        <header class="card-top">
+          <img class="dest-img" src="${destinationDisplay.image}" alt="${destinationDisplay.alt}" width="260px" height="200px">
+        </header>
+        <main class="card-middle">
+          <p>${destinationDisplay.destination}</p>
+        </main>
+        <footer class="card-bottom">
+          <p>Date Traveled: ${trip.date}</p>
+          <p>Estimated Cost: ${dollarConversion.format(destinations.calculateCost(trip.destinationID, trip.travelers, trip.duration))}</p>
+        </footer>
+      </section><br>  
     `
   }) 
 }
@@ -110,16 +117,18 @@ function renderPendingTrips() {
   displayPending.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pendingTrips.innerHTML +=   
-    `
-      <header class="card-top">
-        <img class="dest-img" src="${destinationDisplay.image}" alt="${destinationDisplay.alt}" width="260px" height="200px">
-      </header>
-      <main class="card-middle">
-        <p>${destinationDisplay.destination}</p>
-      </main>
-      <footer class="card-bottom">
-        <p>Date Traveled: ${trip.date}</p>
-      </footer>
+    ` <section class="user-card">
+        <header class="card-top">
+          <img class="dest-img" src="${destinationDisplay.image}" alt="${destinationDisplay.alt}" width="260px" height="200px">
+        </header>
+        <main class="card-middle">
+          <p>${destinationDisplay.destination}</p>
+        </main>
+        <footer class="card-bottom">
+          <p>Travel Date: ${trip.date}</p>
+          <p>Estimated Cost: ${dollarConversion.format(destinations.calculateCost(trip.destinationID, trip.travelers, trip.duration))}</p>
+        </footer>
+      </section><br>  
     `
   }) 
 }
@@ -127,19 +136,17 @@ function renderPendingTrips() {
 // add duration and travelers to innerHTML???
 
 function renderTotal() {
-  const dollarConversion = Intl.NumberFormat('en-us')
   const displayPast = trips.acquirePastTrip(userID)
   let total = displayPast.reduce((acc, trip) => {
     acc += destinations.calculateCost(trip.destinationID, trip.travelers, trip.duration)
     return acc
   }, 0)
   total = dollarConversion.format(total)
-  cashTotal.innerText = `Total Amount Spent: $${total}`
+  cashTotal.innerText = `Total Amount Spent: ${total}`
 }
 
 function estimateThisTrip(event) {
   event.preventDefault()
-  const dollarConversion = Intl.NumberFormat('en-us')
   if (durationForm.value && travelerForm.value && destinationForm.value) {
     let thisTotal = destinations.calculateCost(parseInt(destinationForm.value), parseInt(travelerForm.value), parseInt(durationForm.value))
     thisTotal = dollarConversion.format(thisTotal)
