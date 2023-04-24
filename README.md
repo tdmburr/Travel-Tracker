@@ -24,7 +24,7 @@ You will also need the backend API https://github.com/turingschool-examples/trav
 This project took approximately 50 hours to complete during my 5th week of Mod-2 in the Turing School of Software and Design.
 
 ## Contributors:
-Trey Marshall: @tdmburr
+Trey Marshall ([LinkedIn](https://www.linkedin.com/in/trey-marshall-32ab01260/) || [github](https://github.com/tdmburr)) 
 
 ## Learning Goals:
 
