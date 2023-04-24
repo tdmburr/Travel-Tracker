@@ -20,6 +20,7 @@ let estimateButton = document.querySelector('.estimate')
 let costEstimate = document.querySelector('.estimate-cost')
 let loginForm = document.querySelector('#userLogin')
 let login = document.querySelector('#loginButton')
+let loginHeader = document.querySelector('#loginHeader')
 let username = document.querySelector('#username')
 let password = document.querySelector('#password')
 
@@ -68,6 +69,7 @@ function acceptUser(event) {
     userID = userLog
     renderDOM()
     hide(loginForm)
+    hide(loginHeader)
     show(topBar)
     show(pastTrips)
     show(pendingTrips)
@@ -138,12 +140,12 @@ function renderTotal() {
 function estimateThisTrip(event) {
   event.preventDefault()
   const dollarConversion = Intl.NumberFormat('en-us')
-  if (!dateForm.value && parseInt(durationForm.value) && parseInt(travelerForm.value) && parseInt(destinations.id)) {
-    alert("Please fill out all of the forms before estimating a cost.")
-  } else {
+  if (durationForm.value && travelerForm.value && destinationForm.value) {
     let thisTotal = destinations.calculateCost(parseInt(destinationForm.value), parseInt(travelerForm.value), parseInt(durationForm.value))
     thisTotal = dollarConversion.format(thisTotal)
-    costEstimate.innerText = `Estimated cost for this trip: $${thisTotal}`  
+    costEstimate.innerText = `Estimated cost for this trip: $${thisTotal}`
+  } else {
+    alert("Please fill out all of the forms before estimating a cost.")
   }
 }
 
@@ -155,6 +157,7 @@ function displayDestinationsSelection(destinations) {
 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
+  
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify({
@@ -178,6 +181,9 @@ form.addEventListener('submit', (event) => {
   })
   .catch(err => console.log(`Error at: ${err}`))
 
+  durationForm.value = ""
+  travelerForm.value = ""
+  destinationForm.value = ""
 })
 
 function show(element) {
