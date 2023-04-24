@@ -150,7 +150,7 @@ function estimateThisTrip(event) {
   if (durationForm.value && travelerForm.value && destinationForm.value) {
     let thisTotal = destinations.calculateCost(parseInt(destinationForm.value), parseInt(travelerForm.value), parseInt(durationForm.value))
     thisTotal = dollarConversion.format(thisTotal)
-    costEstimate.innerText = `Estimated cost for this trip: $${thisTotal}`
+    costEstimate.innerText = `Estimated cost for this trip: ${thisTotal}`
   } else {
     alert("Please fill out all of the forms before estimating a cost.")
   };
