@@ -4,16 +4,16 @@ class Destination {
   }
 
   acquireDestination(ID) {
-    return this.destinationData.find(destination => destination.id === ID)
-  }
+    return this.destinationData.find(destination => destination.id === ID);
+  };
 
   calculateCost(ID, numTravelers, duration) {
-    const destination = this.acquireDestination(ID)
+    const destination = this.acquireDestination(ID);
    
-    const totalPriceWithFee = Math.round((destination.estimatedLodgingCostPerDay * duration + destination.estimatedFlightCostPerPerson * numTravelers) * 1.1)
-    return totalPriceWithFee
+    const totalPriceWithFee = Math.round((destination.estimatedLodgingCostPerDay * duration + destination.estimatedFlightCostPerPerson * numTravelers) * 1.1);
+    return totalPriceWithFee;
   }
-}
+};
 
 
 

@@ -1,7 +1,7 @@
 class Traveler {
   constructor(travelerData) {
     this.travelerData = travelerData;
-    this.currentTraveler = undefined
+    this.currentTraveler = undefined;
   }
 
   getTraveler(userID) {
@@ -10,7 +10,7 @@ class Traveler {
     })
     return this.currentTraveler
   }
-}
+};
 
 
 

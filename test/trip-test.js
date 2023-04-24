@@ -25,28 +25,28 @@ describe('Trip', function() {
     })
     
     it('should take in a destination ID', function () {
-      expect(trip.tripData[0].destinationID).to.equal(49)
-    })
+      expect(trip.tripData[0].destinationID).to.equal(49);
+    });
 
     it('should take in a traveler', function () {
-      expect(trip.tripData[0].travelers).to.equal(1)
-    })
+      expect(trip.tripData[0].travelers).to.equal(1);
+    });
 
     it('should take in a date', function () {
-      expect(trip.tripData[0].date).to.equal("2022/09/16")
-    })
+      expect(trip.tripData[0].date).to.equal("2022/09/16");
+    });
 
     it('should take in a trip duration', function () {
-      expect(trip.tripData[0].duration).to.equal(8)
-    })
+      expect(trip.tripData[0].duration).to.equal(8);
+    });
 
     it('should take in a trip status', function () {
-      expect(trip.tripData[0].status).to.equal("approved")
-    })
+      expect(trip.tripData[0].status).to.equal("approved");
+    });
 
     it('should take in a suggested activity', function () {
-      expect(trip.tripData[0].suggestedActivities).to.deep.equal([])
-    })
+      expect(trip.tripData[0].suggestedActivities).to.deep.equal([]);
+    });
 
     it('should find a user trip by an id value', function () {
       expect(trip.acquirePastTrip(44)).to.deep.equal([
@@ -60,8 +60,8 @@ describe('Trip', function() {
           status: 'approved',
           suggestedActivities: []
         }
-      ])
-    })
+      ]);
+    });
 
     it('should find a pending trip by its status', function () {
 
@@ -76,6 +76,6 @@ describe('Trip', function() {
           "status":"pending",
           "suggestedActivities":[]
         }
-      ])
-    })
-})  
+      ]);
+    });
+});
