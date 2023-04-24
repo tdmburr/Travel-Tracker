@@ -70,7 +70,7 @@ function acceptUser(event) {
   const user = username.value
   const pass = password.value
   let userLog = parseInt(user.replace("traveler", ""))
-  if (pass === 'travel') {
+  if (pass === 'travel' && userLog <= 50 && userLog >= 1) {
     userID = userLog
     renderDOM()
     hide(loginForm)
@@ -78,6 +78,8 @@ function acceptUser(event) {
     show(topBar)
     show(pastTrips)
     show(pendingTrips)
+  } else if (pass !== "travel" || userLog > 50 || userLog < 1) {
+    alert('Traveler IDs(numbers) must be 1 to 50. You must have a correct password.')
   }
 }
 
@@ -132,8 +134,6 @@ function renderPendingTrips() {
     `
   }) 
 }
-
-// add duration and travelers to innerHTML???
 
 function renderTotal() {
   const displayPast = trips.acquirePastTrip(userID)
