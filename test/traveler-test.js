@@ -22,15 +22,15 @@ describe('Traveler', function() {
   
     it('should take in a travelers name', function() {
       expect(traveler.travelerData[0].name).to.equal("Marijo MacNeilley");
-    })
+    });
     
     it('should take in a travel style', function () {
-      expect(traveler.travelerData[0].travelerType).to.equal("photographer")
-    })
+      expect(traveler.travelerData[0].travelerType).to.equal("photographer");
+    });
 
     it('should take in a current traveler', function () {
-      expect(traveler.currentTraveler).to.equal(undefined)
-    })
+      expect(traveler.currentTraveler).to.equal(undefined);
+    });
 
     it('should have a method to return a current traveler', function () {
       
@@ -38,12 +38,10 @@ describe('Traveler', function() {
         "id":44,
         "name":"Marijo MacNeilley",
         "travelerType":"photographer" 
-      })
-    })
+      });
+    });
 
     it('should return undefined if a user ID doesnt exist', function () {
       expect(traveler.getTraveler(54)).to.equal(undefined)
-    })
-
-    
-})    
+    });  
+});    

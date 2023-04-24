@@ -4,8 +4,8 @@ class Trip {
   }
 
   acquirePastTrip(userID) {
-    return this.tripData.filter(trip => trip.userID === userID && trip.status === 'approved')
-  }
+    return this.tripData.filter(trip => trip.userID === userID && trip.status === 'approved');
+  };
 
   acquirePendingTrip(userID) {
     const filterTrip = this.tripData.filter(trip => {
@@ -14,8 +14,8 @@ class Trip {
       }
     })
     return filterTrip
-  }
-}
+  };
+};
 
 
 export default Trip;

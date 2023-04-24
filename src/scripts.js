@@ -3,44 +3,44 @@ import './css/styles.css';
 import { travelDataFetch } from './apiCalls';
 import Traveler from './Traveler.js'
 import Destination from './Destination';
-import Trip from './Trip.js'
+import Trip from './Trip.js';
 
 // Selectors
-let topBar = document.querySelector('.top-bar')
-let traveler = document.querySelector('.greeting')
-let pastTrips = document.querySelector('.travel-card-past')
-let pendingTrips = document.querySelector('.travel-card-pending')
-let cashTotal = document.querySelector('.cash')
-let destinationForm = document.querySelector('#destination')
-let dateForm = document.querySelector('#date')
-let durationForm = document.querySelector('#duration')
-let travelerForm = document.querySelector('#travelers')
-let form = document.querySelector('.post-form')
-let estimateButton = document.querySelector('.estimate')
-let costEstimate = document.querySelector('.estimate-cost')
-let loginForm = document.querySelector('#userLogin')
-let login = document.querySelector('#loginButton')
-let loginHeader = document.querySelector('#loginHeader')
-let username = document.querySelector('#username')
-let password = document.querySelector('#password')
+let topBar = document.querySelector('.top-bar');
+let traveler = document.querySelector('.greeting');
+let pastTrips = document.querySelector('.travel-card-past');
+let pendingTrips = document.querySelector('.travel-card-pending');
+let cashTotal = document.querySelector('.cash');
+let destinationForm = document.querySelector('#destination');
+let dateForm = document.querySelector('#date');
+let durationForm = document.querySelector('#duration');
+let travelerForm = document.querySelector('#travelers');
+let form = document.querySelector('.post-form');
+let estimateButton = document.querySelector('.estimate');
+let costEstimate = document.querySelector('.estimate-cost');
+let loginForm = document.querySelector('#userLogin');
+let login = document.querySelector('#loginButton');
+let loginHeader = document.querySelector('#loginHeader');
+let username = document.querySelector('#username');
+let password = document.querySelector('#password');
 
 // Globals
-let travelers, trips, destinations
-let userID = 1
+let travelers, trips, destinations;
+let userID = 1;
 let date = new Date();
 let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
 let dollarConversion = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
-})
+});
 
 // Event Listeners
 
 window.addEventListener('load', initializeData);
 
-estimateButton.addEventListener('click', estimateThisTrip)
+estimateButton.addEventListener('click', estimateThisTrip);
 
-login.addEventListener('click', acceptUser)
+login.addEventListener('click', acceptUser);
 
 // Methods
 
@@ -54,22 +54,22 @@ function initializeData() {
     renderDOM()
   })
   .catch(err => console.log(`Error at: ${err}`))
-}
+};
 
 function renderDOM() {
-  displayTraveler()
-  renderPastTrips()
-  renderTotal()
-  renderPendingTrips()
-  displayCalendar()
-  displayDestinationsSelection(destinations)
+  displayTraveler();
+  renderPastTrips();
+  renderTotal();
+  renderPendingTrips();
+  displayCalendar();
+  displayDestinationsSelection(destinations);
 }
 
 function acceptUser(event) {
-  event.preventDefault()
-  const user = username.value
-  const pass = password.value
-  let userLog = parseInt(user.replace("traveler", ""))
+  event.preventDefault();
+  const user = username.value;
+  const pass = password.value;
+  let userLog = parseInt(user.replace("traveler", ""));
   if (pass === 'travel' && userLog <= 50 && userLog >= 1) {
     userID = userLog
     renderDOM()
@@ -80,20 +80,20 @@ function acceptUser(event) {
     show(pendingTrips)
   } else if (pass !== "travel" || userLog > 50 || userLog < 1) {
     alert('Traveler IDs(numbers) must be 1 to 50. You must have a correct password.')
-  }
-}
+  };
+};
 
 function displayCalendar() {
   dateForm.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="date" placeholder="yyyy/mm/dd" required>`;
 }
 
 function displayTraveler() {
-  traveler.innerText = `Welcome ${travelers.getTraveler(userID).name}`
+  traveler.innerText = `Welcome ${travelers.getTraveler(userID).name}`;
 }
 
 function renderPastTrips() {
-  const displayPast = trips.acquirePastTrip(userID)
-  pastTrips.innerHTML = '<h1 class="past">Past Trips</h1>'
+  const displayPast = trips.acquirePastTrip(userID);
+  pastTrips.innerHTML = '<h1 class="past">Past Trips</h1>';
   displayPast.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pastTrips.innerHTML +=   
@@ -110,12 +110,12 @@ function renderPastTrips() {
         </footer>
       </section><br>  
     `
-  }) 
-}
+  });
+};
 
 function renderPendingTrips() {
-  const displayPending = trips.acquirePendingTrip(userID)
-  pendingTrips.innerHTML = '<h1 class="pending">Pending Trips</h1>'
+  const displayPending = trips.acquirePendingTrip(userID);
+  pendingTrips.innerHTML = '<h1 class="pending">Pending Trips</h1>';
   displayPending.forEach(trip => {
     const destinationDisplay = destinations.acquireDestination(trip.destinationID)
     pendingTrips.innerHTML +=   
@@ -133,16 +133,16 @@ function renderPendingTrips() {
       </section><br>  
     `
   }) 
-}
+};
 
 function renderTotal() {
-  const displayPast = trips.acquirePastTrip(userID)
+  const displayPast = trips.acquirePastTrip(userID);
   let total = displayPast.reduce((acc, trip) => {
     acc += destinations.calculateCost(trip.destinationID, trip.travelers, trip.duration)
     return acc
   }, 0)
-  total = dollarConversion.format(total)
-  cashTotal.innerText = `Total Amount Spent: ${total}`
+  total = dollarConversion.format(total);
+  cashTotal.innerText = `Total Amount Spent: ${total}`;
 }
 
 function estimateThisTrip(event) {
@@ -153,17 +153,17 @@ function estimateThisTrip(event) {
     costEstimate.innerText = `Estimated cost for this trip: $${thisTotal}`
   } else {
     alert("Please fill out all of the forms before estimating a cost.")
-  }
-}
+  };
+};
 
 function displayDestinationsSelection(destinations) {
   destinations.destinationData.forEach(destination => {
     destinationForm.innerHTML += `<option id="${destination.id}" value="${destination.id}">${destination.destination}</option>`
-  })
-}
+  });
+};
 
 form.addEventListener('submit', (event) => {
-  event.preventDefault()
+  event.preventDefault();
   
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
@@ -188,10 +188,10 @@ form.addEventListener('submit', (event) => {
   })
   .catch(err => console.log(`Error at: ${err}`))
 
-  durationForm.value = ""
-  travelerForm.value = ""
-  destinationForm.value = ""
-})
+  durationForm.value = "";
+  travelerForm.value = "";
+  destinationForm.value = "";
+});
 
 function show(element) {
   element.classList.remove('hidden');
