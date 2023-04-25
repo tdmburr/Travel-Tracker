@@ -78,7 +78,7 @@ function acceptUser(event) {
     show(topBar)
     show(pastTrips)
     show(pendingTrips)
-  } else if (pass !== "travel" || userLog > 50 || userLog < 1) {
+  } else {
     alert('Traveler IDs(numbers) must be 1 to 50. You must have a correct password.')
   };
 };
