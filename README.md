@@ -35,3 +35,6 @@ Trey Marshall ([LinkedIn](https://www.linkedin.com/in/trey-marshall-32ab01260/) 
 
 ## Wins + Challenges:
 Wins: Effective use of fetch calls. Further improvements of html/css.
+
+
+Challenges: The POST was an initial issue, but was resolved through various refactoring.
